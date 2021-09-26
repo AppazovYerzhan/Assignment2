@@ -3,7 +3,7 @@
 #include <vector>
 #include <random>
 #include <time.h>
-
+#include <chrono>
 using namespace std;
 
 void createVectorOfPeople(vector<Person>& people) { //function that handles the creation of the vector of people
@@ -47,23 +47,86 @@ void changeLuck(Person& person1, Person& person2){              //function that 
     person1.setLuck(person2.getLuck());
     person2.setLuck(tempLuck);
 }
+extern "C"                                                      //using the С language syntax in C++ by extern keyword
+{
+int printf(const char *format,...);
+}
 
+class SomeClass{                                                //creation of random class to show in example how works const keyword in getter
+    int a;
+    int b;
+public:
+SomeClass(){}
+SomeClass(int x, int y) : a(x), b(y){}
+
+    void setA(int a) {
+        SomeClass::a = a;
+    }
+
+    void setB(int b) {
+        SomeClass::b = b;
+    }
+
+    int getA() const{                                           //changed getter
+//        SomeClass::a = 1000;
+        return a;
+    }
+
+    int getB() const {
+        return b;
+    }
+
+
+
+};
 int main() {
 
-    vector<Person> people;                                  //creating the vector with datatype 'Person'
-    createVectorOfPeople(people);                           //using function to create vector correctly
-    showThePeople(people);                                  //function to print all people from vector
 
-    Person luckiestOne = findTheLuckiest(people);           //variable that stores the luckiest person`s data
-    //outputting the luckiest person
-    cout<<"The luckiest one of them is: "<<luckiestOne.getName()<<". With luck value: "<<luckiestOne.getLuck();
 
-    changeLuck(people.at(0), people.at(1));                 //swapping the luck of two person
-    cout<<"\nAfter swapping Luck values"<<endl;
-    showThePeople(people);                                  //function to print all people from vector
+//    vector<Person> people;                                  //creating the vector with datatype 'Person'
+//    createVectorOfPeople(people);                           //using function to create vector correctly
+//    showThePeople(people);                                  //function to print all people from vector
+//
+//    Person luckiestOne = findTheLuckiest(people);           //variable that stores the luckiest person`s data
+//    //outputting the luckiest person
+//    cout<<"The luckiest one of them is: "<<luckiestOne.getName()<<". With luck value: "<<luckiestOne.getLuck();
+//
+//    changeLuck(people.at(0), people.at(1));                 //swapping the luck of two person
+//    cout<<"\nAfter swapping Luck values"<<endl;
+//    showThePeople(people);                                  //function to print all people from vector
+//
+//    vector<Person> vectorPeople;                            //cache-friendly
+//    //vs
+//    list<Person> listPeople;                                //cache-unfriendly
+
+//    long sum = 0;                                           //example of cache-unfriendly code
+//    long arr[INT_MAX][INT_MAX];
+//    for (int j = 0; j<INT_MAX;j++){
+//        for (int i=0; i<INT_MAX; i++){
+//            sum+=arr[i][j];
+//        }
+//    }
+
+//    printf("Some code in C language!");                       //using the С language syntax in C++ by extern keyword
+
+//    const int passwordLength = 10;
+//    passwordLength = 4;
+
+//      const double PI = 3.14;
+//      const double gravityOfEarth = 9.8;
+//      const int speedOfLight = 300000;
+//
+//      PI = 2;
+//      gravityOfEarth = 50;
+//      speedOfLight = 12;
+
+//    SomeClass sc(1, 2);
+//    cout<<sc.getB()<<endl;
+//    cout<<sc.getA();
 
     return 0;
 }
+
 
 /* To input to console and check the output
 
