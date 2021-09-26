@@ -25,7 +25,7 @@ void createVectorOfPeople(vector<Person>& people) { //function that handles the 
 }
 void showThePeople(const vector<Person>& people){                   //function that outputs all people from vector
         for (int i=0; i<5; i++){                                    //loop for 5 cycles in order to output 5 people
-            cout<<i<<") "<<"Name: "<<people.at(i).getName()<<endl;  //printing the name
+            cout<<i+1<<") "<<"Name: "<<people.at(i).getName()<<endl;  //printing the name
             cout<<"Age: "<<people.at(i).getAge()<<endl;             //printing the age
             cout<<"Luck: "<<people.at(i).getLuck()<<endl;           //printing the luck
         }
@@ -41,7 +41,12 @@ Person findTheLuckiest(const vector<Person>& people){           //function that 
     }
     return tempPerson;                                          //returning person with highest luck
 }
+void changeLuck(Person& person1, Person& person2){              //function that swaps luck values of two person
+    int tempLuck = person1.getLuck();                           //temp variable that stores one of the person`s luck value
 
+    person1.setLuck(person2.getLuck());
+    person2.setLuck(tempLuck);
+}
 
 int main() {
 
@@ -52,6 +57,10 @@ int main() {
     Person luckiestOne = findTheLuckiest(people);           //variable that stores the luckiest person`s data
     //outputting the luckiest person
     cout<<"The luckiest one of them is: "<<luckiestOne.getName()<<". With luck value: "<<luckiestOne.getLuck();
+
+    changeLuck(people.at(0), people.at(1));                 //swapping the luck of two person
+    cout<<"\nAfter swapping Luck values"<<endl;
+    showThePeople(people);                                  //function to print all people from vector
 
     return 0;
 }
