@@ -11,6 +11,8 @@ private:
 public:
     Person(const string &name, int age, int luck);
 
+    Person(const string &name);
+
     Person();
 
     const string &getName() const;
@@ -18,6 +20,12 @@ public:
     int getAge() const;
 
     int getLuck() const;
+
+    void setName(const string &name);
+
+    void setAge(int age);
+
+    void setLuck(int luck);
 };
 
 #endif
